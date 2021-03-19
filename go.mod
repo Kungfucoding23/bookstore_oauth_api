@@ -4,5 +4,6 @@ go 1.16
 
 require (
 	github.com/gin-gonic/gin v1.6.3
+	github.com/gocql/gocql v0.0.0-20210313142353-65899a66288b
 	github.com/stretchr/testify v1.7.0
 )
