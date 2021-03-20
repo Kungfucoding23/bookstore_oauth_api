@@ -3,7 +3,8 @@ package http
 import (
 	"net/http"
 
-	"github.com/Kungfucoding23/bookstore_oauth_api/src/domain/access_token"
+	atDomain "github.com/Kungfucoding23/bookstore_oauth_api/src/domain/access_token"
+	"github.com/Kungfucoding23/bookstore_oauth_api/src/services/access_token"
 	"github.com/Kungfucoding23/bookstore_oauth_api/src/utils/errors"
 	"github.com/gin-gonic/gin"
 )
@@ -33,7 +34,7 @@ func (handler *accessTokenHandler) GetByID(c *gin.Context) {
 }
 
 func (handler *accessTokenHandler) Create(c *gin.Context) {
-	var at access_token.AccessToken
+	var at atDomain.AccessToken
 	if err := c.ShouldBindJSON(&at); err != nil {
 		restErr := errors.NewBadRequestError("invalid json body")
 		c.JSON(restErr.Status, restErr)
