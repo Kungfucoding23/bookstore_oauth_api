@@ -2,9 +2,9 @@ package app
 
 import (
 	"github.com/Kungfucoding23/bookstore_oauth_api/src/clients/cassandra"
-	"github.com/Kungfucoding23/bookstore_oauth_api/src/domain/access_token"
 	"github.com/Kungfucoding23/bookstore_oauth_api/src/http"
 	"github.com/Kungfucoding23/bookstore_oauth_api/src/repository/db"
+	"github.com/Kungfucoding23/bookstore_oauth_api/src/services/access_token"
 	"github.com/gin-gonic/gin"
 )
 

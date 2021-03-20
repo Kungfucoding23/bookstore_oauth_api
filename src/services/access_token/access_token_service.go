@@ -3,19 +3,20 @@ package access_token
 import (
 	"strings"
 
+	"github.com/Kungfucoding23/bookstore_oauth_api/src/domain/access_token"
 	"github.com/Kungfucoding23/bookstore_oauth_api/src/utils/errors"
 )
 
 type Repository interface {
-	GetByID(string) (*AccessToken, *errors.RestErr)
-	Create(AccessToken) *errors.RestErr
-	UpdateExpirationTime(AccessToken) *errors.RestErr
+	GetByID(string) (*access_token.AccessToken, *errors.RestErr)
+	Create(access_token.AccessToken) *errors.RestErr
+	UpdateExpirationTime(access_token.AccessToken) *errors.RestErr
 }
 
 type Service interface {
-	GetByID(string) (*AccessToken, *errors.RestErr)
-	Create(AccessToken) *errors.RestErr
-	UpdateExpirationTime(AccessToken) *errors.RestErr
+	GetByID(string) (*access_token.AccessToken, *errors.RestErr)
+	Create(access_token.AccessToken) *errors.RestErr
+	UpdateExpirationTime(access_token.AccessToken) *errors.RestErr
 }
 
 type service struct {
@@ -28,7 +29,7 @@ func NewService(repo Repository) Service {
 	}
 }
 
-func (s *service) GetByID(accessTokenID string) (*AccessToken, *errors.RestErr) {
+func (s *service) GetByID(accessTokenID string) (*access_token.AccessToken, *errors.RestErr) {
 	accessTokenID = strings.TrimSpace(accessTokenID)
 	if len(accessTokenID) == 0 {
 		return nil, errors.NewBadRequestError("invalid access token id")
@@ -41,14 +42,14 @@ func (s *service) GetByID(accessTokenID string) (*AccessToken, *errors.RestErr) 
 
 }
 
-func (s *service) Create(at AccessToken) *errors.RestErr {
+func (s *service) Create(at access_token.AccessToken) *errors.RestErr {
 	if err := at.Validate(); err != nil {
 		return err
 	}
 	return s.repository.Create(at)
 }
 
-func (s *service) UpdateExpirationTime(at AccessToken) *errors.RestErr {
+func (s *service) UpdateExpirationTime(at access_token.AccessToken) *errors.RestErr {
 	if err := at.Validate(); err != nil {
 		return err
 	}
